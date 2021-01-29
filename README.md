@@ -1,7 +1,7 @@
 # 基于openstf二次开发的群控管理平台
 
 
-| ------------------------------------------------------------------------------------------------------------ |
+
 | 本项目根据openstf以及openstf-ios二次开发。同时支持Android/iOS单体控制以及群体控制。
 
 
@@ -40,6 +40,8 @@
 
 -   [WebDriverAgent](https://github.com/EasilyTest/WebDriverAgent.git)
 -   brew
+-   xcode (<10.3)
+-   nodejs (8)
 
 
 
