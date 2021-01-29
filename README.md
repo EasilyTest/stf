@@ -1,7 +1,6 @@
 # 基于openstf二次开发的群控管理平台
 
 
-|                                                                                       |
 | ------------------------------------------------------------------------------------------------------------ |
 | 本项目根据openstf以及openstf-ios二次开发。同时支持Android/iOS单体控制以及群体控制。
 
@@ -17,18 +16,18 @@
 
 1.  准备一台 Mac 主机；
 
-2.  安装 brew 以及nodejs（version 8，推荐使用8.9.3），运行以下命令
-    brew uninstall --ignore-dependencies libimobiledevice
-    brew uninstall --ignore-dependencies usbmuxd
-    brew install --HEAD usbmuxd
-    brew unlink usbmuxd
-    brew link usbmuxd
-    brew install --HEAD libimobiledevice
-    brew install --HEAD ideviceinstaller
-    brew install carthage
-    brew install socat
-    brew install graphicsmagick zeromq protobuf yasm pkg-config
-    brew cask install android-platform-tools
+2.  安装 brew 以及nodejs（version 8，推荐使用8.9.3），运行以下命令  
+    brew uninstall --ignore-dependencies libimobiledevice  
+    brew uninstall --ignore-dependencies usbmuxd  
+    brew install --HEAD usbmuxd  
+    brew unlink usbmuxd  
+    brew link usbmuxd  
+    brew install --HEAD libimobiledevice  
+    brew install --HEAD ideviceinstaller  
+    brew install carthage  
+    brew install socat  
+    brew install graphicsmagick zeromq protobuf yasm pkg-config  
+    brew cask install android-platform-tools  
     
 3.  进入本项目目录,执行 cnpm install 或者 npm install
 
@@ -40,7 +39,7 @@
 ## 相关工具
 
 -   [WebDriverAgent](https://github.com/EasilyTest/WebDriverAgent.git)
--   [brew]( /bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)" )
+-   brew
 
 
 
