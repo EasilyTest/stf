@@ -12,11 +12,11 @@
 
 ## 快速开始
 
-仅需两步快速安装 MeterSphere：
+仅需两步快速安装 ：
 
-1.  准备一台 Mac 主机；
+1.  准备一台 Mac 主机,如不需要ios功能，Linux也可；
 
-2.  安装 brew 以及nodejs（version 8，推荐使用8.9.3），运行以下命令  
+2.  安装 brew 以及nodejs，运行以下命令  
     brew uninstall --ignore-dependencies libimobiledevice  
     brew uninstall --ignore-dependencies usbmuxd  
     brew install --HEAD usbmuxd  
@@ -32,7 +32,9 @@
 3.  进入本项目目录,执行 cnpm install 或者 npm install
 
 4.  如需使用ios接入，配置WebDriverAgent,clone代码，clone完毕后进入目录，执行./Scripts/bootstrap.sh 下载 wda所需依赖库
-    安装xcode（版本< 10.3）,运行WebDriverAgent
+    安装xcode（版本< 10.3）,运行WebDriverAgent 
+
+5.  如运行错误，检查stf doctor
    
 
 
