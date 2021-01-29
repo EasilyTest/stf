@@ -1,0 +1,144 @@
+.stf-menu .stf-logo {
+  background: url(../../common/logo/exports/STF-512.png) no-repeat 0 0;
+  width: 32px;
+  height: 32px;
+  float: left;
+  text-indent: -9999em;
+  margin: 6px 10px 0 0;
+  background-size: 100% auto;
+  -webkit-background-size: 100% auto;
+}
+
+.stf-menu .stf-top-bar {
+  height: 44px;
+  padding: 0 10px 0 20px;
+  width: 100%;
+  float: left;
+}
+
+.stf-menu .stf-nav {
+  padding-left: 15px;
+  text-align: left;
+  margin: 0;
+  float: left;
+}
+
+.stf-menu .stf-nav > li {
+  padding-right: 15px;
+  float: left;
+  display: inline-block;
+  text-align: left;
+  position: relative;
+  margin: 0;
+}
+
+.stf-menu .stf-nav > li > a {
+  display: inline-block;
+  text-align: left;
+  padding: 0 !important;
+  padding-right: 18px !important;
+  padding-left: 14px !important;
+  font-size: 15px;
+  line-height: 44px;
+  color: #777777;
+  font-weight: 400;
+  height: 44px;
+  position: relative;
+}
+
+.stf-menu .stf-nav > li > a > span.fa {
+  display: inline-block;
+  float: left;
+  margin: 8px 8px 0 0;
+  font-size: 28px;
+}
+
+.stf-menu .stf-nav > li > a > span.fa-mobile {
+  font-size: 30px;
+}
+
+.stf-menu .stf-nav > li > a.current {
+  color: #5684ab;
+}
+
+.stf-menu.navbar {
+  height: 44px !important;
+  min-height: 44px !important;
+}
+
+.stf-qa  {
+  line-height: 44px;
+  color: #777;
+  font-family: fantasy;
+  font-size: initial;
+  padding-right: 18px !important;
+}
+
+.stf-git-feedback {
+  line-height: 44px;
+  color: #777;
+  font-family: fantasy;
+  font-size: initial;
+  padding-right: 18px !important;
+}
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 25px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

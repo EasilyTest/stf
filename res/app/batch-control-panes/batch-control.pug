@@ -1,0 +1,170 @@
+div(ng-controller='BatchControlCtrl')
+  div.batch-top-bar
+    ul.batch-nav.sync 
+      li.stf-nav-web-native-button1 同步控制
+    ul.batch-nav.ckSync
+      li.stf-nav-web-native-button1
+        .btn-group
+          label.switch
+            input(type='checkbox' ng-click="syncConfig(check)")
+            span.slider.round
+    ul.batch-nav.quality
+      li.stf-nav-web-native-button1
+        .screen-quality(style='margin-top: 2px;')
+          p(style='margin:3px 0 1px') 画质：
+      li.stf-nav-web-native-button1
+        select(ng-model='quality', ng-change="", style='height: 25px;')
+            option(value='null') 无
+    ul.batch-nav.allmove
+      li.stf-nav-web-native-button1
+        button.batch-control.allRemove(ng-click="onAllRemove()") 一键移除
+    ul.batch-nav.allhome
+      li.stf-nav-web-native-button1
+        button.batch-control.allHome(ng-click="onAllHome()") 一键Home
+
+    .upload-status(ng-if='device_install.installation').selectable
+      uib-progressbar(max='100', value='device_install.installation.progress', ng-if='!device_install.installation.settled',
+        ng-class='{"active": !device_install.installation.settled}',style="margin-bottom:0px").progress-striped
+      div(ng-if='!device_install.installation.error')
+        span(ng-switch='device_install.installation.state')
+          strong(ng-switch-when='uploading')
+            span(translate) Uploading...
+            span  ({{device_install.installation.progress}}%)
+          strong(ng-switch-when='processing')
+            span(translate) Processing...
+            span  ({{device_install.installation.progress}}%)
+      alert(type='danger', close='clear(device_install)', ng-if='device_install.installation.error')
+        strong(translate) Oops!
+        | &#x20;
+        span {{ device_install.installation.error | installError | translate }} ({{ device_install.installation.error }})
+
+  div.phone-list
+    ul.batch-nav-phone-left.phone-list-left(style="margin-left:10px;padding-left:0px;")
+      div(style="height:90%;overflow-y:auto;")
+        div.search
+
+        table.device_table
+          thead
+            tr.stf-tr
+              th.device-th-box
+                input(type='checkbox', ng-model="selectAll_Status.checked",ng-change="selectAll(currentPageDvices)" disabled="disabled")
+              th.device-th-long  品牌
+              th.device-th-short  型号
+              th.device-th-status  状态
+          tbody
+            tr.stf-tr(ng-repeat='device in currentPageDvices' ng-if="device.present && device.ready")
+              td.device-td
+                input(type='checkbox',ng-model="device.checked" ng-change="selectOne(device)")
+              td.device-td {{device.manufacturer}}
+              td.device-td {{device.marketName||device.model||device.name}}
+              td.device-td(ng-if='device.owner || device.using')
+                a 繁忙
+              td.device-td(ng-if='!device.owner') 在线
+      div
+        ul(style="margin-bottom:3px;color:green;padding-left:0px;")
+          span 当前总共{{onlineDevices.length}}个设备
+        ul(style="padding-left:0px;")
+          span 每页显示
+          input(type="number" min='1' size='5' style="max-width:15%" ng-model="page.number" ng-change="filter(page,0)" text="{{page.number}}")
+          button.batch-control.pre-btn(style="margin-left:10px" ng-click="filter(page,-1)") 上一页
+          span(style="margin-left:2px") {{page.currentPage}}
+          button.batch-control.next-btn(style="margin-left:2px" ng-click="filter(page,1)") 下一页
+    ul.batch-nav-phone-left.phone-list-right(style="padding-left:0px;")
+      ul.phone-list-content(style="padding-left:0px;")
+        li(ng-repeat='device in devices',index="devices.indexOf(device)",class="{{device.class}}")
+          div(ng-if="!device.bmaster")
+            div.phone-top
+              ul
+                span.phone-name(style="font-size:15px") {{device.marketName||device.model||device.name}}
+                button.app_button(ng-click="changeMaster(device)") 设为主控
+              div.install-process(style="position:relative")
+                .upload-status(ng-if='device.installation').selectable
+                  uib-progressbar(max='100', value='device.installation.progress', ng-if='!device.installation.settled',
+                    ng-class='{"active": !device.installation.settled}',style="margin-bottom:0px").progress-striped
+                  div(ng-if='!device.installation.error')
+                    span(ng-switch='device.installation.state')
+                      strong(ng-switch-when='uploading')
+                        span(translate) Uploading...
+                        span  ({{device.installation.progress}}%)
+                      strong(ng-switch-when='processing')
+                        span(translate) Processing...
+                        span  ({{device.installation.progress}}%)
+                      strong(ng-switch-when='pushing_app')
+                        span(translate) Pushing app...
+                        span  ({{device.installation.progress}}%)
+                      strong(ng-switch-when='installing_app')
+                        span(translate) Installing app...
+                        span  ({{device.installation.progress}}%)
+                      strong(ng-switch-when='launching_app')
+                        span(translate) Launching activity...
+                        span  ({{device.installation.progress}}%)
+                  alert(type='danger', close='clear(device)', ng-if='device.installation.error')
+                    strong(translate) Oops!
+                    | &#x20;
+                    span {{ device.installation.error | installError | translate }} ({{ device.installation.error }})
+            div.phone-screen
+              iframe.phone-show(style="width: 140px;height: 190px;",src="{{device.src}}")
+            div.phone-footer
+              div.phone-del(ng-click="onRemove(device)") 移除
+              div.phone-home(ng-click="onHome(device)") 桌面
+              div.phone-power(ng-click="onPower(device)") 解锁
+              div.phone-full(ng-click="onFull(device)") 全屏
+          div(ng-if="device.bmaster")
+            div.phone-top-master
+              ul
+                span.phone-name {{device.marketName||device.model||device.name}}
+              div.install-process(style="position:relative")
+                .upload-status(ng-if='device.installation').selectable
+                  uib-progressbar(max='100', value='device.installation.progress', ng-if='!device.installation.settled',
+                    ng-class='{"active": !device.installation.settled}',style="margin-bottom:0px").progress-striped
+                  div(ng-if='!device.installation.error')
+                    span(ng-switch='device.installation.state')
+                      strong(ng-switch-when='uploading')
+                        span(translate) Uploading...
+                        span  ({{device.installation.progress}}%)
+                      strong(ng-switch-when='processing')
+                        span(translate) Processing...
+                        span  ({{device.installation.progress}}%)
+                      strong(ng-switch-when='pushing_app')
+                        span(translate) Pushing app...
+                        span  ({{device.installation.progress}}%)
+                      strong(ng-switch-when='installing_app')
+                        span(translate) Installing app...
+                        span  ({{device.installation.progress}}%)
+                      strong(ng-switch-when='launching_app')
+                        span(translate) Launching activity...
+                        span  ({{device.installation.progress}}%)
+                  alert(type='danger', close='clear(device)', ng-if='device.installation.error')
+                    strong(translate) Oops!
+                    | &#x20;
+                    span {{ device.installation.error | installError | translate }} ({{ device.installation.error }})
+            div.phone-screen-master
+              iframe.phone-show(src="{{device.src}}")
+            ul.phone-footer(style="height: 30px;line-height: 30px;")
+              div.phone-del(ng-click="onRemove(device)") 移除
+              div.phone-home(ng-click="onHome(device)") 桌面
+              div.phone-power(ng-click="onPower(device)") 解锁
+              div.phone-full(ng-click="onFull(device)") 全屏
+  
+  div.pb_container.cancel
+    div.pb_mask
+    div.pb_panel
+      div.pb_body
+        div(ng-if="appDicts.length===0") 正在获取app列表，请稍后
+        table.device_table(ng-if="appDicts.length>0")
+          thead
+            tr
+              th.device-th-long 应用名
+              th.device-th-long 包名
+              th.device-th-long 操作
+          tbody
+            tr.stf-tr(ng-repeat='app in appDicts')
+              td.device-td {{app.appName}}
+              td.device-td {{app.packageName}}
+              td.device-td
+                button.app_button(ng-click="onOprateApp(app.packageName,1)") 打开
+                button.app_button(ng-click="onOprateApp(app.packageName,0)") 停止
+                button.app_button(ng-click="onOprateApp(app.packageName,-1)") 卸载
+      div.pb_btns
+          a.pb_cancelbtn(href="javascript:void(0);",ng-click="closeContainer()") 取消
+    .clearfix

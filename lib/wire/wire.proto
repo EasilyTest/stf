@@ -1,0 +1,751 @@
+//
+// Copyright © 2019 contains code contributed by Orange SA, authors: Denis Barbaron - Licensed under the Apache license 2.0
+//
+
+// Message wrapper
+
+enum MessageType {
+  CopyMessage                = 33;
+  DeviceIntroductionMessage  = 74;
+  DeviceAbsentMessage        = 1;
+  DeviceIdentityMessage      = 2;
+  DeviceLogcatEntryMessage   = 3;
+  DeviceLogMessage           = 4;
+  DeviceReadyMessage         = 5;
+  DevicePresentMessage       = 6;
+  DevicePropertiesMessage    = 7;
+  DeviceRegisteredMessage    = 8;
+  DeviceStatusMessage        = 9;
+  GroupMessage               = 10;
+  InstallMessage             = 30;
+  PhysicalIdentifyMessage    = 29;
+  JoinGroupMessage           = 11;
+  JoinGroupByAdbFingerprintMessage = 69;
+  JoinGroupByVncAuthResponseMessage = 90;
+  VncAuthResponsesUpdatedMessage = 91;
+  AutoGroupMessage           = 70;
+  AdbKeysUpdatedMessage      = 71;
+  KeyDownMessage             = 12;
+  KeyPressMessage            = 13;
+  KeyUpMessage               = 14;
+  LaunchActivityMessage      = 31;
+  LeaveGroupMessage          = 15;
+  LogcatApplyFiltersMessage  = 16;
+  PasteMessage               = 32;
+  ProbeMessage               = 17;
+  ShellCommandMessage        = 18;
+  ShellKeepAliveMessage      = 19;
+  TouchDownMessage           = 21;
+  TouchMoveMessage           = 22;
+  TouchUpMessage             = 23;
+  TouchCommitMessage         = 65;
+  TouchResetMessage          = 66;
+  GestureStartMessage        = 67;
+  GestureStopMessage         = 68;
+  TransactionDoneMessage     = 24;
+  TransactionProgressMessage = 25;
+  TypeMessage                = 26;
+  UngroupMessage             = 27;
+  UninstallMessage           = 34;
+  RotateMessage              = 35;
+  ForwardTestMessage         = 36;
+  ForwardCreateMessage       = 37;
+  ForwardRemoveMessage       = 38;
+  LogcatStartMessage         = 39;
+  LogcatStopMessage          = 40;
+  BrowserOpenMessage         = 41;
+  BrowserClearMessage        = 42;
+  AirplaneModeEvent          = 43;
+  BatteryEvent               = 44;
+  DeviceBrowserMessage       = 45;
+  ConnectivityEvent          = 46;
+  PhoneStateEvent            = 47;
+  RotationEvent              = 48;
+  StoreOpenMessage           = 49;
+  ScreenCaptureMessage       = 50;
+  DeviceHeartbeatMessage     = 73;
+  RebootMessage              = 52;
+  ConnectStartMessage        = 53;
+  ConnectStopMessage         = 54;
+  RingerSetMessage           = 56;
+  RingerGetMessage           = 64;
+  WifiSetEnabledMessage      = 57;
+  WifiGetStatusMessage       = 58;
+  AccountAddMenuMessage      = 59;
+  AccountAddMessage          = 60;
+  AccountCheckMessage        = 63;
+  AccountGetMessage          = 62;
+  AccountRemoveMessage       = 55;
+  SdStatusMessage            = 61;
+  ReverseForwardsEvent       = 72;
+  FileSystemListMessage      = 81;
+  FileSystemGetMessage       = 82;
+  ConnectStartedMessage      = 92;
+  ConnectStoppedMessage      = 93;
+  GroupUserChangeMessage     = 1200;
+  DeviceGroupChangeMessage   = 1201;
+  DeviceOriginGroupMessage   = 1202;
+  DeleteUserMessage          = 1203;
+  UpdateAccessTokenMessage   = 1204;
+  GroupChangeMessage         = 1205;
+  UserChangeMessage          = 1206;
+  DeviceChangeMessage        = 1207;
+}
+
+message UpdateAccessTokenMessage {
+}
+
+message DeleteUserMessage {
+  required string email = 1;
+}
+
+message DeviceOriginGroupMessage {
+  required string signature = 1;
+}
+
+message UserQuotasDetailField {
+  required double duration = 1;
+  required uint32 number = 2;
+}
+
+message UserQuotasField {
+  required UserQuotasDetailField allocated = 1;
+  required UserQuotasDetailField consumed = 2;
+  required uint32 defaultGroupsDuration = 3;
+  required uint32 defaultGroupsNumber = 4;
+  required uint32 defaultGroupsRepetitions = 5;
+  required uint32 repetitions = 6;
+}
+
+message UserGroupsField {
+  required UserQuotasField quotas = 1;
+  repeated string subscribed = 2;
+}
+
+message UserField {
+  required string email = 1;
+  required string name = 2;
+  required string privilege = 3;
+  required UserGroupsField groups = 4;
+}
+
+message UserChangeMessage {
+  required UserField user = 1;
+  required bool isAddedGroup = 2;
+  repeated string groups = 3;
+  required string action = 4;
+  repeated string targets = 5;
+  required double timeStamp = 6;
+}
+
+message DeviceNetworkField {
+  optional string type = 1;
+  optional string subtype = 2;
+}
+
+message DeviceDisplayField {
+  optional uint32 height = 1;
+  optional uint32 width = 2;
+}
+
+message DevicePhoneField {
+  optional string imei = 1;
+}
+
+message DeviceProviderField {
+  optional string name = 1;
+}
+
+message DeviceGroupField {
+  optional string origin = 1;
+  optional string originName = 2;
+}
+
+message DeviceField {
+  required string serial = 1;
+  optional string model = 2;
+  optional string version = 3;
+  optional string operator = 4;
+  optional DeviceNetworkField network = 5;
+  optional DeviceDisplayField display = 6;
+  optional string manufacturer = 7;
+  optional string sdk = 8;
+  optional string abi = 9;
+  optional string cpuPlatform = 10;
+  optional string openGLESVersion = 11;
+  optional DevicePhoneField phone = 12;
+  optional DeviceProviderField provider = 13;
+  optional DeviceGroupField group = 14;
+  optional string marketName = 15;
+}
+
+message DeviceChangeMessage {
+  required DeviceField device = 1;
+  required string action = 2;
+  required string oldOriginGroupId = 3;
+  required double timeStamp = 4;
+}
+
+message GroupDateField {
+  required string start = 1;
+  required string stop = 2;
+}
+
+message GroupOwnerField {
+  required string email = 1;
+  required string name = 2;
+}
+
+message GroupField {
+  required string id = 1;
+  required string name = 2;
+  required string class = 3;
+  required string privilege = 4;
+  required GroupOwnerField owner = 5;
+  repeated GroupDateField dates = 6;
+  required uint32 duration = 7;
+  required uint32 repetitions = 8;
+  repeated string devices = 9;
+  repeated string users = 10;
+  required string state = 11;
+  required bool isActive = 12;
+}
+
+message GroupChangeMessage {
+  required GroupField group = 1;
+  required string action = 2;
+  repeated string subscribers = 3;
+  required bool isChangedDates = 4;
+  required bool isChangedClass = 5;
+  required bool isAddedUser = 6;
+  repeated string users = 7;
+  required bool isAddedDevice = 8;
+  repeated string devices = 9;
+  required double timeStamp = 10;
+}
+
+message DeviceGroupChangeMessage {
+  required string id = 1;
+  required DeviceGroupMessage group = 2;
+  required string serial = 3;
+}
+
+message GroupUserChangeMessage {
+  repeated string users = 1;
+  required bool isAdded = 2;
+  required string id = 3;
+  required bool isDeletedLater = 4;
+  repeated string devices = 5;
+}
+
+message ConnectStartedMessage {
+  required string serial = 1;
+  required string url = 2;
+}
+
+message ConnectStoppedMessage {
+  required string serial = 1;
+}
+
+message FileSystemListMessage {
+  required string dir = 1;
+}
+
+message FileSystemGetMessage {
+  required string file = 1;
+}
+
+message Envelope {
+  required MessageType type = 1;
+  required bytes message = 2;
+  optional string channel = 3;
+}
+
+message TransactionProgressMessage {
+  required string source = 1;
+  required uint32 seq = 2;
+  optional string data = 3;
+  optional uint32 progress = 4 [default = 0];
+}
+
+message TransactionDoneMessage {
+  required string source = 1;
+  required uint32 seq = 2;
+  required bool success = 3;
+  optional string data = 4;
+  optional string body = 5;
+}
+
+// Logging
+
+message DeviceLogMessage {
+  required string serial = 1;
+  required double timestamp = 2;
+  required uint32 priority = 3;
+  required string tag = 4;
+  required uint32 pid = 5;
+  required string message = 6;
+  required string identifier = 7;
+}
+
+// Introductions
+
+message DeviceGroupOwnerMessage {
+  required string email = 1;
+  required string name = 2;
+}
+
+message DeviceGroupLifetimeMessage {
+  required double start = 1;
+  required double stop = 2;
+}
+
+message DeviceGroupMessage {
+  required string id = 1;
+  required string name = 2;
+  required DeviceGroupOwnerMessage owner  = 3;
+  required DeviceGroupLifetimeMessage lifeTime  = 4;
+  required string class = 5;
+  required uint32 repetitions = 6;
+  required string originName = 7;
+}
+
+message ProviderMessage {
+  required string channel = 1;
+  required string name = 2;
+}
+
+message DeviceHeartbeatMessage {
+  required string serial = 1;
+}
+
+message DeviceIntroductionMessage {
+  required string serial = 1;
+  required DeviceStatus status = 2;
+  required ProviderMessage provider = 3;
+  optional DeviceGroupMessage group = 4;
+}
+
+message DeviceRegisteredMessage {
+  required string serial = 1;
+}
+
+message DevicePresentMessage {
+  required string serial = 1;
+}
+
+message DeviceAbsentMessage {
+  required string serial = 1;
+}
+
+message DeviceReadyMessage {
+  required string serial = 1;
+  required string channel = 2;
+}
+
+message ProbeMessage {
+}
+
+enum DeviceStatus {
+  OFFLINE = 1;
+  UNAUTHORIZED = 2;
+  ONLINE = 3;
+  CONNECTING = 4;
+  AUTHORIZING = 5;
+}
+
+message DeviceStatusMessage {
+  required string serial = 1;
+  required DeviceStatus status = 2;
+}
+
+message DeviceDisplayMessage {
+  required int32 id = 1;
+  required int32 width = 2;
+  required int32 height = 3;
+  required int32 rotation = 4;
+  required float xdpi = 5;
+  required float ydpi = 6;
+  required float fps = 7;
+  required float density = 8;
+  required bool secure = 9;
+  required string url = 10;
+  optional float size = 11;
+}
+
+message DeviceBrowserAppMessage {
+  required string id = 1;
+  required string type = 2;
+  required string name = 3;
+  required bool selected = 4;
+  required bool system = 5;
+}
+
+message DeviceBrowserMessage {
+  required string serial = 1;
+  required bool selected = 2;
+  repeated DeviceBrowserAppMessage apps = 3;
+}
+
+message DevicePhoneMessage {
+  optional string imei = 1;
+  optional string imsi = 5;
+  optional string phoneNumber = 2;
+  optional string iccid = 3;
+  optional string network = 4;
+}
+
+message DeviceIdentityMessage {
+  required string serial = 1;
+  required string platform = 2;
+  required string manufacturer = 3;
+  optional string operator = 4;
+  required string model = 5;
+  required string version = 6;
+  required string abi = 7;
+  required string sdk = 8;
+  required DeviceDisplayMessage display = 9;
+  required DevicePhoneMessage phone = 11;
+  optional string product = 12;
+  optional string cpuPlatform = 13;
+  optional string openGLESVersion = 14;
+  optional string marketName = 15;
+}
+
+message DeviceProperty {
+  required string name = 1;
+  required string value = 2;
+}
+
+message DevicePropertiesMessage {
+  required string serial = 1;
+  repeated DeviceProperty properties = 2;
+}
+
+// Grouping
+
+enum RequirementType {
+  SEMVER = 1;
+  GLOB = 2;
+  EXACT = 3;
+}
+
+message DeviceRequirement {
+  required string name = 1;
+  required string value = 2;
+  required RequirementType type = 3;
+}
+
+message OwnerMessage {
+  required string email = 1;
+  required string name = 2;
+  required string group = 3;
+}
+
+message GroupMessage {
+  required OwnerMessage owner = 1;
+  optional uint32 timeout = 2;
+  repeated DeviceRequirement requirements = 3;
+  optional string usage = 4;
+}
+
+message AutoGroupMessage {
+  required OwnerMessage owner = 1;
+  required string identifier = 2;
+}
+
+message UngroupMessage {
+  repeated DeviceRequirement requirements = 2;
+}
+
+message JoinGroupMessage {
+  required string serial = 1;
+  required OwnerMessage owner = 2;
+  optional string usage = 3;
+}
+
+message JoinGroupByAdbFingerprintMessage {
+  required string serial = 1;
+  required string fingerprint = 2;
+  optional string comment = 3;
+  optional string currentGroup = 4;
+}
+
+message JoinGroupByVncAuthResponseMessage {
+  required string serial = 1;
+  required string response = 2;
+  optional string currentGroup = 4;
+}
+
+message AdbKeysUpdatedMessage {
+}
+
+message VncAuthResponsesUpdatedMessage {
+}
+
+message LeaveGroupMessage {
+  required string serial = 1;
+  required OwnerMessage owner = 2;
+  required string reason = 3;
+}
+
+// Input
+
+message PhysicalIdentifyMessage {
+}
+
+message TouchDownMessage {
+  required uint32 seq = 1;
+  required uint32 contact = 2;
+  required float x = 3;
+  required float y = 4;
+  optional float pressure = 5;
+}
+
+message TouchMoveMessage {
+  required uint32 seq = 1;
+  required uint32 contact = 2;
+  required float x = 3;
+  required float y = 4;
+  optional float pressure = 5;
+}
+
+message TouchUpMessage {
+  required uint32 seq = 1;
+  required uint32 contact = 2;
+}
+
+message TouchCommitMessage {
+  required uint32 seq = 1;
+}
+
+message TouchResetMessage {
+  required uint32 seq = 1;
+}
+
+message GestureStartMessage {
+  required uint32 seq = 1;
+}
+
+message GestureStopMessage {
+  required uint32 seq = 1;
+}
+
+message TypeMessage {
+  required string text = 1;
+}
+
+message PasteMessage {
+  required string text = 1;
+}
+
+message CopyMessage {
+}
+
+message KeyDownMessage {
+  required string key = 1;
+}
+
+message KeyUpMessage {
+  required string key = 1;
+}
+
+message KeyPressMessage {
+  required string key = 1;
+}
+
+message RebootMessage {
+}
+
+// Output
+
+message DeviceLogcatEntryMessage {
+  required string serial = 1;
+  required double date = 2;
+  required uint32 pid = 3;
+  required uint32 tid = 4;
+  required uint32 priority = 5;
+  required string tag = 6;
+  required string message = 7;
+}
+
+message LogcatFilter {
+  required string tag = 1;
+  required uint32 priority = 2;
+}
+
+message LogcatStartMessage {
+  repeated LogcatFilter filters = 1;
+}
+
+message LogcatStopMessage {
+}
+
+message LogcatApplyFiltersMessage {
+  repeated LogcatFilter filters = 1;
+}
+
+// Commands
+
+message ShellCommandMessage {
+  required string command = 1;
+  required uint32 timeout = 2;
+}
+
+message ShellKeepAliveMessage {
+  required uint32 timeout = 1;
+}
+
+message InstallMessage {
+  required string href = 1;
+  required bool launch = 2;
+  optional string manifest = 3;
+}
+
+message UninstallMessage {
+  required string packageName = 1;
+}
+
+message LaunchActivityMessage {
+  required string action = 1;
+  required string component = 2;
+  repeated string category = 3;
+  optional uint32 flags = 4;
+}
+
+message RotateMessage {
+  required int32 rotation = 1;
+}
+
+message ForwardTestMessage {
+  required string targetHost = 1;
+  required uint32 targetPort = 2;
+}
+
+message ForwardCreateMessage {
+  required string id = 1;
+  required uint32 devicePort = 2;
+  required string targetHost = 3;
+  required uint32 targetPort = 4;
+}
+
+message ForwardRemoveMessage {
+  required string id = 1;
+}
+
+message ReverseForward {
+  required string id = 1;
+  required uint32 devicePort = 2;
+  required string targetHost = 3;
+  required uint32 targetPort = 4;
+}
+
+message ReverseForwardsEvent {
+  required string serial = 1;
+  repeated ReverseForward forwards = 2;
+}
+
+message BrowserOpenMessage {
+  required string url = 1;
+  optional string browser = 2;
+}
+
+message BrowserClearMessage {
+  optional string browser = 1;
+}
+
+message StoreOpenMessage {
+}
+
+message ScreenCaptureMessage {
+}
+
+message ConnectStartMessage {
+}
+
+message ConnectStopMessage {
+}
+
+message AccountAddMenuMessage {
+}
+
+message AccountAddMessage {
+  required string user = 1;
+  required string password = 2;
+}
+
+message AccountCheckMessage {
+  required string type = 1;
+  required string account = 2;
+}
+
+message AccountGetMessage {
+  optional string type = 1;
+}
+
+message AccountRemoveMessage {
+  required string type = 1;
+  optional string account = 2;
+}
+
+message SdStatusMessage {
+}
+
+enum RingerMode {
+    SILENT = 0;
+    VIBRATE = 1;
+    NORMAL = 2;
+}
+
+message RingerSetMessage {
+  required RingerMode mode = 1;
+}
+
+message RingerGetMessage {
+}
+
+message WifiSetEnabledMessage {
+  required bool enabled = 1;
+}
+
+message WifiGetStatusMessage {
+}
+
+// Events, these must be kept in sync with STFService/wire.proto
+
+message AirplaneModeEvent {
+  required string serial = 1;
+  required bool enabled = 2;
+}
+
+message BatteryEvent {
+  required string serial = 1;
+  required string status = 2;
+  required string health = 3;
+  required string source = 4;
+  required uint32 level = 5;
+  required uint32 scale = 6;
+  required double temp = 7;
+  required double voltage = 8;
+}
+
+message ConnectivityEvent {
+  required string serial = 1;
+  required bool connected = 2;
+  optional string type = 3;
+  optional string subtype = 4;
+  optional bool failover = 5;
+  optional bool roaming = 6;
+}
+
+message PhoneStateEvent {
+  required string serial = 1;
+  required string state = 2;
+  required bool manual = 3;
+  optional string operator = 4;
+}
+
+message RotationEvent {
+  required string serial = 1;
+  required int32 rotation = 2;
+}

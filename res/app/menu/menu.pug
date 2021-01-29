@@ -1,0 +1,30 @@
+.navbar.stf-menu(ng-controller='MenuCtrl')
+  .container-fluid.stf-top-bar
+    a.stf-logo(ng-href="/#!/devices") STF
+    ul.nav.stf-nav(nav-menu='current').unselectable
+      li(ng-cloak)
+        a(ng-href='/#!/control/{{lastUsedDevice}}', ng-show='lastUsedDevice')
+          span.fa.fa-mobile
+          span(ng-if='!$root.basicMode', translate) Control
+        a(ng-href='/#!/devices', accesskey='1')
+          span.fa.fa-sitemap
+          span(ng-if='!$root.basicMode', translate) Devices
+        a(ng-href='/#!/batchcontrol', accesskey='1')
+          span.fa.fa-sitemap
+          span(ng-if='!$root.basicMode', translate) 群控
+        a(ng-href='/#!/settings')
+          span.fa.fa-gears
+          span(ng-if='!$root.basicMode', translate) Settings
+        //- a(ng-href='/#!/deviceManager')
+        //-   span.fa.fa-gears
+        //-   span(ng-if='!$root.basicMode', translate) 设备管理
+
+    //- ul.nav.stf-nav.stf-feedback.pull-right(ng-cloak, nav-menu='current').unselectable
+    //-   li.stf-nav-web-native-button(ng-if='!$root.basicMode && isControlRoute')
+    //-     .btn-group
+    //-       button(type='button', ng-model='$root.platform', uib-btn-radio="'web'", translate).btn.btn-sm.btn-default-outline Web
+    //-       button(type='button', ng-model='$root.platform', uib-btn-radio="'native'", translate).btn.btn-sm.btn-default-outline Native
+      //li(ng-show='!$root.basicMode')
+      //  a(ng-href='/#!/help', accesskey='6')
+      //    i.fa.fa-question-circle.fa-fw
+      //    | {{ "Help" | translate }}
