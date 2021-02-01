@@ -14,6 +14,8 @@
 
 Quick installation in two steps ：
 
+- Mac
+
 1.  Prepare a Mac host. If you do not wang to use IOS , Linux can also be used；
 
 2.  install brew and nodejs，Run the command:  
@@ -35,7 +37,73 @@ Quick installation in two steps ：
     install xcode（version< 10.3）,test WebDriverAgent 
 
 5.  If the operation is wrong, check STF doctor
-   
+ 
+- Linux（centos）
+1.environment 
+	sudo -s  
+	yum update  
+	yum install git  
+	yum install yum  
+	yum -y install gcc  
+	yum install gcc-c++  
+	yum install gcc-gfortran  
+	yum install zeromq-devel  
+2.install rethinkdb  
+	wget http://download.rethinkdb.com/centos/7/`uname -m`/rethinkdb.repo \  
+          -O /etc/yum.repos.d/rethinkdb.repo  
+	yum install rethinkdb  
+  install GraphicsMagick  
+	wget https://iweb.dl.sourceforge.net/project/graphicsmagick/graphicsmagick/1.3.26/GraphicsMagick-1.3.26.tar.gz  
+	tar -zxvf GraphicsMagick-1.3.25.tar.gz  
+	cd GraphicsMagick-1.3.25  
+	./configure --prefix=/usr/local/gm  
+	make  
+	make install  
+  install zeromq  
+	wget https://github.com/zeromq/libzmq/releases/download/v4.2.2/zeromq-4.2.2.tar.gz  
+	tar zxvf zeromq-4.2.2.tar.gz  
+	cd zeromq-4.2.2  
+	./configure --prefix=/usr/local/zeromq  
+	make  
+	make install  
+  install pkg-config  
+	wget http://pkgconfig.freedesktop.org/releases/pkg-config-0.29.2.tar.gz  
+	tar -zxvf pkg-config-0.29.2.tar.gz  
+	cd pkg-config-0.29.2  
+	./configure --prefix=/usr/local/pkg-config --with-internal-glib  
+	make  
+	make intall  
+  install yasm  
+	wget http://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz  
+	tar -zxvf yasm-1.3.0.tar.gz  
+	cd yasm-1.3.0  
+	./configure --prefix=/usr/local/yasm  
+	make  
+	make install  
+
+  install libsodium  
+	wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.15.tar.gz  
+	tar -zxvf libsodium-1.0.10.tar.gz  
+	./augen.sh  
+	./configure --prefix=/usr/local/libsodium  
+	make  
+	make install  
+  install protobuf  
+	wget https://github.com/google/protobuf/releases/download/v3.5.0/protobuf-cpp-3.5.0.tar.gz  
+	tar -zxvf protobuf-cpp-3.5.0.tar.gz  
+	cd protobuf-3.5.0  
+	./configure --prefix=/usr/local/protobuf  
+	make  
+	make intall  
+	ln -s /usr/local/gm/bin/* /usr/local/bin/
+	ln -s /usr/local/yasm/bin/* /usr/local/bin/
+	ln -s /usr/local/libsodium/bin/* /usr/local/bin/
+	ln -s /usr/local/protobuf/bin/* /usr/local/bin
+
+  update /etc/profile
+	export PKG_CONFIG_PATH=/usr/local/pkg-config
+	export PATH=$PKG_CONFIG_PATH:$PATH
+3.run cnpm install
 
 
 ## Related tools
