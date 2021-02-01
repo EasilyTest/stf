@@ -53,11 +53,11 @@ Quick installation in two steps ：
 
 
 
-## 技术栈
+## Technology stack
 
 -   angular ，nodejs
 
-## 致谢
+## Thanks
 
 -   [openstf](https://jmeter.apache.org/)：Thanks to openstf as the basic engine  
 -   [mrx1203](https://github.com/mrx1203/stf)：Thank you for the IOS design ideas provided by mrx1203  
