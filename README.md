@@ -63,13 +63,15 @@
 -   [mrx1203](https://github.com/mrx1203/stf)：感谢 mrx1203 提供的iOS设计思路
 
 
-如果觉得好用的话，请给我点个star，推荐chrome游览器，显示体验更加，开源不易且赞且珍惜。
+如果觉得好用的话，请给我点个star，推荐chrome游览器，显示体验更佳，开源不易且赞且珍惜。
 
 
 ## License & Copyright
 
-Licensed under The GNU General Public License version 2 (GPLv2)  (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
-
-<https://www.gnu.org/licenses/gpl-2.0.html>
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+Licensed under the Apache License, Version 2.0 (the "License");you may not use this file except in compliance with the License.
+You may obtain a copy of the License at 
+ 
+	http://www.apache.org/licenses/LICENSE-2.0  
+	
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.See the License for the specific language governing permissions and limitations under the License.
