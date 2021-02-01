@@ -15,7 +15,7 @@
 
 仅需两步快速安装 ：
 
-1.  准备一台 Mac 主机,如不需要ios功能，Linux也可；
+1.  准备一台 Mac 主机,如不需要ios功能，Linux也可(未经过测试不保证完全可用)；
 
 2.  安装 brew 以及nodejs，运行以下命令  
     brew uninstall --ignore-dependencies libimobiledevice  
@@ -46,6 +46,12 @@
 -   xcode (<10.3)
 -   nodejs (8)
 
+
+## 测试使用版本  
+
+-   macOS Catalina 10.15.6
+-   xcode (10.0)
+-   nodejs (8.9.0)
 
 
 ## 产品优势
