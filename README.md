@@ -1,6 +1,7 @@
 # 基于openstf二次开发的群控管理平台
 
 
+> [English](README-EN.md) | 中文  
 
 | 本项目根据openstf以及openstf-ios二次开发。同时支持Android/iOS单体控制以及群体控制。
 
