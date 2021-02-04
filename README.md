@@ -9,7 +9,7 @@
 -   单控: 基于原生的openstf，操作便捷可使用文件安装，shell、剪贴板、日志等功能；
 -   群控: 批量支持机器同屏展示，一键home/移除等功能；
 
-
+![image](https://github.com/EasilyTest/stf/blob/master/batch.png)
 
 ## 快速开始
 
