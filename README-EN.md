@@ -3,12 +3,12 @@
 
 
 | This project is based on openstf and openstf IOS secondary development. It also supports Android / IOS single control and group control.  
-
+| This project can be compatible with Linux / Mac, using the latest open source tidevice to achieve WDA fast compile run, does not necessarily need the support of MAC devices, experience different openstf
 
 -   Single control: Based on the original openstf, it is easy to operate, and can use file installation, shell, clipboard, log and other functions;  
 -   Batch control: batch support of machine display on the same screen, one click home / remove and other functions;  
 
-
+![ScreenShot](https://github.com/EasilyTest/stf/blob/master/batch.png)
 
 ## Quick start
 
@@ -19,6 +19,7 @@ Quick installation in two steps ：
 1.  Prepare a Mac host. If you do not wang to use IOS , Linux can also be used；
 
 2.  install brew and nodejs，Run the command:  
+    pip3 install -U tidevice  
     brew uninstall --ignore-dependencies libimobiledevice  
     brew uninstall --ignore-dependencies usbmuxd  
     brew install --HEAD usbmuxd  
@@ -39,8 +40,8 @@ Quick installation in two steps ：
 5.  If the operation is wrong, check STF doctor
  
 - Linux（centos）
-1.environment 
-	sudo -s  
+1.environment     pip3 install -U tidevice  
+    sudo -s  
 	yum update  
 	yum install git  
 	yum install yum  
@@ -112,7 +113,7 @@ Quick installation in two steps ：
 -   brew
 -   xcode (<10.3)
 -   nodejs (8)
-
+-   python (3.7.6)
 
 
 ## Product advantages
