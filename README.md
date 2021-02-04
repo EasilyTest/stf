@@ -3,8 +3,8 @@
 
 > [English](README-EN.md) | 中文  
 
-| 本项目根据openstf以及openstf-ios二次开发。同时支持Android/iOS单体控制以及群体控制。
-| 本项目可以兼容Linux/Mac，利用最新开源的tidevice实现wda快速编译运行，不一定需要Mac设备的支持，体验不一样的openstf.
+| 本项目根据openstf以及openstf-ios二次开发。同时支持Android/iOS单体控制以及群体控制。  
+| 本项目可以兼容Linux/Mac，利用最新开源的tidevice实现wda快速编译运行，不一定需要Mac设备的支持，体验不一样的openstf.  
 
 -   单控: 基于原生的openstf，操作便捷可使用文件安装，shell、剪贴板、日志等功能；
 -   群控: 批量支持机器同屏展示，一键home/移除等功能；
@@ -25,8 +25,8 @@
     brew install --HEAD usbmuxd  
     brew unlink usbmuxd  
     brew link usbmuxd  
-    brew install --HEAD libimobiledevice  (可选)
-    brew install --HEAD ideviceinstaller  (可选)
+    brew install --HEAD libimobiledevice  
+    brew install --HEAD ideviceinstaller  
     brew install carthage  
     brew install socat  
     brew install graphicsmagick zeromq protobuf yasm pkg-config  
@@ -123,7 +123,8 @@ Linux(centos):
     更新/etc/profile
 
 	export PKG_CONFIG_PATH=/usr/local/pkg-config
-	export PATH=$PKG_CONFIG_PATH:$PATH
+	export PATH=$PKG_CONFIG_PATH:$PATH  
+	libimobiledevice、ideviceinstaller自行编译安装    
 
 3.  cd到目录执行cnpm install或者npm install + glup build
 
@@ -160,8 +161,8 @@ Linux(centos):
 ## 致谢
 
 -   [openstf](https://jmeter.apache.org/)：感谢 openstf  作为基础引擎
--   [mrx1203](https://github.com/mrx1203/stf)：感谢 mrx1203 提供的iOS设计思路
--   [alibaba](https://github.com/alibaba/taobao-iphone-device)：感谢 阿里 开源的iOS设备通信工具
+-   [stf](https://github.com/mrx1203/stf)：感谢 mrx1203 提供的iOS设计思路
+-   [tidevice](https://github.com/alibaba/taobao-iphone-device)：感谢 阿里 开源的iOS设备通信工具
 
 
 如果觉得好用的话，请给我点个star，推荐chrome游览器，显示体验更佳，开源不易且赞且珍惜。
