@@ -124,7 +124,18 @@ Linux(centos):
 
 	export PKG_CONFIG_PATH=/usr/local/pkg-config
 	export PATH=$PKG_CONFIG_PATH:$PATH  
-	libimobiledevice、ideviceinstaller自行编译安装    
+
+    安装libimobiledevice、ideviceinstaller  
+       git clone https://github.com/libimobiledevice/libimobiledevice.git  
+       cd libimobiledevice  
+       ./autogen.sh --prefix=/opt/local --enable-debug  
+       make  
+       sudo make install  
+       git clone https://github.com/libimobiledevice/ideviceinstaller.git  
+       cd ideviceinstaller  
+       ./autogen.sh  
+       make  
+       sudo make install  
 
 3.  cd到目录执行cnpm install或者npm install + glup build
 
