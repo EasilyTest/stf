@@ -39,8 +39,10 @@ Quick installation in two steps ：
 
 5.  If the operation is wrong, check STF doctor
  
-- Linux（centos）
-1.environment     pip3 install -U tidevice  
+- Linux（centos）
+
+1.environment 
+    pip3 install -U tidevice  
     sudo -s  
 	yum update  
 	yum install git  
@@ -48,62 +50,94 @@ Quick installation in two steps ：
 	yum -y install gcc  
 	yum install gcc-c++  
 	yum install gcc-gfortran  
-	yum install zeromq-devel  
-2.install rethinkdb  
+	yum install zeromq-devel  
+
+
+2.install rethinkdb  
+
 	wget http://download.rethinkdb.com/centos/7/`uname -m`/rethinkdb.repo \  
           -O /etc/yum.repos.d/rethinkdb.repo  
-	yum install rethinkdb  
-  install GraphicsMagick  
+	yum install rethinkdb  
+
+  install GraphicsMagick  
+
 	wget https://iweb.dl.sourceforge.net/project/graphicsmagick/graphicsmagick/1.3.26/GraphicsMagick-1.3.26.tar.gz  
 	tar -zxvf GraphicsMagick-1.3.25.tar.gz  
 	cd GraphicsMagick-1.3.25  
 	./configure --prefix=/usr/local/gm  
 	make  
-	make install  
-  install zeromq  
+	make install  
+
+  install zeromq  
+
 	wget https://github.com/zeromq/libzmq/releases/download/v4.2.2/zeromq-4.2.2.tar.gz  
 	tar zxvf zeromq-4.2.2.tar.gz  
 	cd zeromq-4.2.2  
 	./configure --prefix=/usr/local/zeromq  
 	make  
-	make install  
-  install pkg-config  
+	make install  
+
+  install pkg-config  
+
 	wget http://pkgconfig.freedesktop.org/releases/pkg-config-0.29.2.tar.gz  
 	tar -zxvf pkg-config-0.29.2.tar.gz  
 	cd pkg-config-0.29.2  
 	./configure --prefix=/usr/local/pkg-config --with-internal-glib  
 	make  
-	make intall  
-  install yasm  
+	make intall  
+
+
+  install yasm  
+
 	wget http://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz  
 	tar -zxvf yasm-1.3.0.tar.gz  
 	cd yasm-1.3.0  
 	./configure --prefix=/usr/local/yasm  
 	make  
 	make install  
-
-  install libsodium  
+
+
+  install libsodium  
+
 	wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.15.tar.gz  
 	tar -zxvf libsodium-1.0.10.tar.gz  
 	./augen.sh  
 	./configure --prefix=/usr/local/libsodium  
 	make  
-	make install  
-  install protobuf  
+	make install  
+
+  install protobuf  
+
 	wget https://github.com/google/protobuf/releases/download/v3.5.0/protobuf-cpp-3.5.0.tar.gz  
 	tar -zxvf protobuf-cpp-3.5.0.tar.gz  
 	cd protobuf-3.5.0  
 	./configure --prefix=/usr/local/protobuf  
 	make  
-	make intall  
+	make intall  
+  install libimobiledevice&ideviceinstaller  
+       git clone https://github.com/libimobiledevice/libimobiledevice.git  
+       cd libimobiledevice  
+       ./autogen.sh --prefix=/opt/local --enable-debug  
+       make  
+       sudo make install  
+       git clone https://github.com/libimobiledevice/ideviceinstaller.git  
+       cd ideviceinstaller  
+       ./autogen.sh  
+       make  
+       sudo make install  
+
 	ln -s /usr/local/gm/bin/* /usr/local/bin/
 	ln -s /usr/local/yasm/bin/* /usr/local/bin/
 	ln -s /usr/local/libsodium/bin/* /usr/local/bin/
-	ln -s /usr/local/protobuf/bin/* /usr/local/bin
+	ln -s /usr/local/protobuf/bin/* /usr/local/bin
 
-  update /etc/profile
+
+  update /etc/profile
+
 	export PKG_CONFIG_PATH=/usr/local/pkg-config
-	export PATH=$PKG_CONFIG_PATH:$PATH
+	export PATH=$PKG_CONFIG_PATH:$PATH
+
+
 3.run cnpm install
 
 
