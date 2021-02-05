@@ -176,7 +176,7 @@ Linux(centos):
 -   [tidevice](https://github.com/alibaba/taobao-iphone-device)：感谢 阿里 开源的iOS设备通信工具
 
 
-如果觉得好用的话，请给我点个star，推荐chrome游览器，显示体验更佳，开源不易且赞且珍惜。
+如果觉得好用的话，请给我点个star，推荐chrome浏览器，显示体验更佳，开源不易且赞且珍惜。
 
 
 ## License & Copyright
