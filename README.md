@@ -167,7 +167,7 @@ Linux(centos):
 
 ## 技术栈
 
--   angular ，nodejs
+-   angularJS ，nodejs
 
 ## 致谢
 
