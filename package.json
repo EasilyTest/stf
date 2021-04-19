@@ -30,7 +30,7 @@
   },
   "scripts": {
     "test": "gulp test",
-    "prepublish": "bower install && not-in-install && gulp build || in-install"
+    "prepublish": "bower install --allow-root && not-in-install && gulp build || in-install"
   },
   "dependencies": {
     "@slack/client": "^3.5.4",
@@ -78,9 +78,9 @@
     "protobufjs": "^3.8.2",
     "proxy-addr": "^1.0.10",
     "pug": "^2.0.0-beta4",
-    "request": "^2.88.2",
+    "request": "^2.67.0",
     "request-progress": "^2.0.1",
-    "request-promise": "^4.2.6",
+    "request-promise": "^4.2.4",
     "rethinkdb": "^2.0.2",
     "semver": "^5.0.1",
     "serve-favicon": "^2.2.0",
@@ -146,7 +146,7 @@
     "less-loader": "^2.2.2",
     "memory-fs": "^0.3.0",
     "node-libs-browser": "^1.0.0",
-    "node-sass": "^3.13.1",
+    "node-sass": "^4.13.1",
     "phantomjs-prebuilt": "^2.1.11",
     "protractor": "^5.4.1",
     "protractor-html-reporter-2": "1.0.4",
