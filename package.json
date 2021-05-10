@@ -30,7 +30,7 @@
   },
   "scripts": {
     "test": "gulp test",
-    "prepublish": "bower install && not-in-install && gulp build || in-install"
+    "prepublish": "bower install --allow-root && not-in-install && gulp build || in-install"
   },
   "dependencies": {
     "@slack/client": "^3.5.4",
@@ -146,7 +146,7 @@
     "less-loader": "^2.2.2",
     "memory-fs": "^0.3.0",
     "node-libs-browser": "^1.0.0",
-    "node-sass": "^3.13.1",
+    "node-sass": "^4.13.1",
     "phantomjs-prebuilt": "^2.1.11",
     "protractor": "^5.4.1",
     "protractor-html-reporter-2": "1.0.4",
