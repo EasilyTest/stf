@@ -47,23 +47,24 @@ Linux(centos):
     yum update  
     yum install git  
     yum install yum  
-    yum -y install gcc  
+    yum -y install gcc patch 
     yum install gcc-c++  
     yum install gcc-gfortran  
     yum install zeromq-devel  
     
 	
 2.  安装rethinkdb  
-    wget http://download.rethinkdb.com/centos/7/`uname -m`/rethinkdb.repo \  
-      -O /etc/yum.repos.d/rethinkdb.repo  
-    yum install rethinkdb  
-    
+    git clone https://github.com/rethinkdb/rethinkdb.git
+    cd rethinkdb
+    ./configure --allow-fetch
+    make -j4
+    make install
 
     安装GraphicsMagick  
 
-	wget https://iweb.dl.sourceforge.net/project/graphicsmagick/graphicsmagick/1.3.26/GraphicsMagick-1.3.26.tar.gz  
-	tar -zxvf GraphicsMagick-1.3.25.tar.gz  
-	cd GraphicsMagick-1.3.25  
+	wget https://iweb.dl.sourceforge.net/project/graphicsmagick/graphicsmagick/1.3.36/GraphicsMagick-1.3.36.tar.gz  
+	tar -zxvf GraphicsMagick-1.3.36.tar.gz  
+	cd GraphicsMagick-1.3.36  
 	./configure --prefix=/usr/local/gm  
 	make  
 	make install  
@@ -97,9 +98,10 @@ Linux(centos):
 
     安装libsodium  
 
-	wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.15.tar.gz  
-	tar -zxvf libsodium-1.0.10.tar.gz  
-	./augen.sh  
+	wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.18.tar.gz  
+	tar -zxvf libsodium-1.0.18.tar.gz 
+  cd libsodium-1.0.18
+	./autogen.sh  
 	./configure --prefix=/usr/local/libsodium  
 	make  
 	make install  
